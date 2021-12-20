@@ -1,0 +1,20 @@
+[Unit]
+Description=auth-api
+After=network.target
+
+[Service]
+Type=simple
+User=root
+Environment=NODE_ENV=production
+Environment=IGNORE_SIGS=true
+WorkingDirectory=/var/www/auth-api
+ExecStart=/usr/bin/node /var/www/auth-api/app/index.js
+ExecReload=/usr/bin/node /var/www/auth-api/app/index.js
+Restart=always
+RestartSec=2s
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=auth-api
+
+[Install]
+WantedBy=multi-user.target
